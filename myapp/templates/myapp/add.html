@@ -1,0 +1,38 @@
+{% extends 'myapp/base.html' %} {% block body %}
+
+<form
+  class="mt-6 flex flex-col gap-3 max-w-[500px] mx-auto px-2"
+  method="POST"
+  enctype="multipart/form-data"
+>
+  {% csrf_token %}
+  <h2 class="bg-gray-500 text-white py-1 w-full text-center mb-4">
+    Add Todo Items
+  </h2>
+  <input
+    class="border border-gray-400 focus:outline-none rounded-md pl-1 py-1"
+    type="text"
+    name="name"
+    id="name"
+    placeholder="Enter Task"
+  />
+  <input
+    class="border border-gray-400 focus:outline-none rounded-md pl-1 py-1"
+    type="text"
+    name="priority"
+    id="priority"
+    placeholder="Enter Task priority"
+  />
+  <input
+    class="border border-gray-400 outline-none focus:outline-none rounded-md px-1 py-1"
+    type="date"
+    name="date"
+    id="date"
+  />
+  <input
+    class="mt-2 bg-gray-500 text-white hover:bg-gray-700 transition-all duration-600 font-bold py-1 rounded-md cursor-pointer"
+    type="submit"
+  />
+</form>
+
+{% endblock %}

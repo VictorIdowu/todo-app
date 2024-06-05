@@ -1,0 +1,12 @@
+{% extends 'myapp/base.html' %} {% block body %}
+
+<form
+  class="mt-6 max-w-[500px] mx-auto flex flex-col gap-3"
+  method="POST"
+  enctype="multipart/form-data"
+>
+  {% csrf_token %} {{form.as_p}}
+  <input type="submit" />
+</form>
+
+{% endblock %}
