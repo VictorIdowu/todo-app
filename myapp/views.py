@@ -1,8 +1,16 @@
 from django.shortcuts import render,redirect
 from .models import Task
 from .forms import TodoForm
+from django.views.generic import ListView
+from django.views.generic.edit import UpdateView
+from django.urls import reverse_lazy
 
 # Create your views here.
+
+class TaskListView(ListView):
+  model = Task
+  template_name = 'myapp/index.html'
+  context_object_name = 'task_list'
 
 def index(request):
   task_list = Task.objects.all()
@@ -24,6 +32,7 @@ def add(request):
   return render(request,'myapp/add.html')
 
 
+
 def delete(request, taskid):
   task = Task.objects.get(id=taskid)
 
@@ -34,6 +43,16 @@ def delete(request, taskid):
   return render(request, 'myapp/delete.html', {
     'task':task
   })
+
+class TaskUpdateView(UpdateView):
+  model = Task
+  template_name = 'myapp/edit.html'
+  context_object_name = 'task'
+  fields = {'name','priority','date'}
+
+  def get_success_url(self):
+    return reverse_lazy('cbvindex')
+
 
 def update(request, taskid):
   task = Task.objects.get(id=taskid)

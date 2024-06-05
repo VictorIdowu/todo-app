@@ -23,5 +23,7 @@ urlpatterns = [
     path('', views.index, name='index'),
     path('add/', views.add, name='add'),
     path('delete/<int:taskid>', views.delete, name='delete'),
-    path('update/<int:taskid>', views.update, name='update'),
+    # path('update/<int:taskid>', views.update, name='update'),
+    path('cbvupdate/<int:pk>', views.TaskUpdateView.as_view(), name='cbvupdate'),
+    path('cbvindex/',views.TaskListView.as_view(), name='cbvindex'),
 ]
